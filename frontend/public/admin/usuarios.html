@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Usuarios Registrados - Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" />
+
+    <style>
+  .main-sidebar .nav-link {
+    color: #ffc107 !important; /* texto amarillo */
+    font-weight: 500;
+  }
+
+  .main-sidebar .nav-link i {
+    color: #ffc107 !important; /* íconos amarillos */
+  }
+
+  .main-sidebar .nav-link.active {
+    background-color: #ffc107 !important; /* amarillo fuerte */
+    color: #000 !important;               /* texto negro */
+  }
+
+  .main-sidebar .nav-link.active i {
+    color: #000 !important;               /* ícono negro en activo */
+  }
+
+  .main-sidebar .nav-link:hover {
+    background-color: #555 !important;    /* gris oscuro en hover */
+  }
+</style>
+
+
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+  <!-- Navbar -->
+ <nav class="main-header navbar navbar-expand bg-dark navbar-dark py-2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-warning font-weight-bold" href="#" onclick="logout()">
+         <i class="fas fa-sign-out-alt text-warning mr-1"></i> Salir
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+    <!-- Sidebar -->
+  <aside class="main-sidebar bg-dark elevation-4">
+    <a href="#" class="brand-link">
+      <span class="brand-text font-weight-bold text-warning">Panel Admin</span>
+    </a>
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+          <li class="nav-item">
+            <a href="dashboard.html" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="crear-vacante.html" class="nav-link">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>Crear Vacante</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="postulaciones.html" class="nav-link">
+              <i class="nav-icon fas fa-file-alt"></i>
+              <p>Postulaciones</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="usuarios.html" class="nav-link active">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Usuarios</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="vacantes.html" class="nav-link">
+              <i class="nav-icon fa fa-id-card"></i>
+              <p>Vacantes</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="carrusel.html" class="nav-link">
+              <i class="nav-icon fas fa-images"></i>
+              <p>Carrusel</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/index.html" class="nav-link" target="_blank">
+              <i class="nav-icon fa fa-check-circle"></i>
+              <p>Puestos Activos</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Contenido -->
+  <div class="content-wrapper p-4">
+    <h2>Usuarios Registrados</h2>
+<div class="row mb-3 align-items-end">
+  <div class="col-md-4">
+    <label for="filtroNivel" class="form-label">
+      <i class="fas fa-graduation-cap mr-2 text-warning"></i> Nivel Académico
+    </label>
+    <select id="filtroNivel" class="form-control border border-warning shadow-sm">
+      <option value="">Todos</option>
+    </select>
+  </div>
+
+  <div class="col-md-4">
+    <label for="filtroCarrera" class="form-label">
+      <i class="fas fa-briefcase mr-2 text-warning"></i> Carrera
+    </label>
+    <select id="filtroCarrera" class="form-control border border-warning shadow-sm">
+      <option value="">Todas</option>
+    </select>
+  </div>
+</div>
+
+  <!--<div class="col-md-4">-->
+    <p id="totalUsuarios" class="text-muted mt-4">Mostrando 0 usuarios</p>
+  <!--</div>-->
+
+    <table class="table table-bordered table-hover mt-3">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Nivel Académico</th>
+          <th>Carrera</th>
+          <th>Tipo</th>
+        </tr>
+      </thead>
+      <tbody id="tablaUsuarios">
+        <!-- Contenido dinámico -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  const token = localStorage.getItem('token');
+  if (!token) window.location.href = '../login.html';
+
+  function logout() {
+  localStorage.clear();
+  window.location.href = '/login.html';
+}
+
+  let usuarios = [];
+
+ function renderizarUsuarios(filtroNivel = '', filtroCarrera = '') 
+ {
+  const tbody = document.getElementById('tablaUsuarios');
+  const totalTexto = document.getElementById('totalUsuarios');
+  tbody.innerHTML = '';
+
+  const usuariosFiltrados = usuarios.filter
+  (u =>
+    (!filtroNivel || u.nivelAcademico === filtroNivel) &&
+    (!filtroCarrera || u.carrera === filtroCarrera)
+  );
+
+  usuariosFiltrados.forEach((u, index) => {
+    const fila = `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${u.nombre}</td>
+        <td>${u.correo}</td>
+        <td>${u.telefono || '-'}</td>
+        <td>${u.nivelAcademico || 'Sin especificar'}</td>
+        <td>${u.carrera || '-'}</td>
+        <td>${u.tipo}</td>
+      </tr>`;
+    tbody.insertAdjacentHTML('beforeend', fila);
+  });
+
+  // ✅ Actualizar contador dinámico
+  /*const total = usuariosFiltrados.length;
+  const texto = total === 1 ? 'usuario' : 'usuarios';
+  totalTexto.innerText = `Mostrando ${total} ${texto}`;*/
+  actualizarContador(usuariosFiltrados.length);
+}
+
+function poblarCarreras(usuarios) {
+  const carreras = [...new Set(usuarios.map(u => u.carrera).filter(c => c))]; // sin duplicados
+  const selectCarrera = document.getElementById('filtroCarrera');
+
+  // Limpiar y agregar opción por defecto
+  selectCarrera.innerHTML = '<option value="">Todas</option>';
+
+  carreras.forEach(carrera => {
+    const option = document.createElement('option');
+    option.value = carrera;
+    option.textContent = carrera;
+    selectCarrera.appendChild(option);
+  });
+}
+
+function poblarNiveles(usuarios) {
+  const niveles = [...new Set(usuarios.map(u => u.nivelAcademico).filter(n => n))]; // sin duplicados
+  const selectNivel = document.getElementById('filtroNivel');
+
+  // Limpiar y agregar opción por defecto
+  selectNivel.innerHTML = '<option value="">Todos</option>';
+
+  niveles.forEach(nivel => {
+    const option = document.createElement('option');
+    option.value = nivel;
+    option.textContent = nivel;
+    selectNivel.appendChild(option);
+  });
+}
+
+function actualizarContador(total) {
+  const totalTexto = document.getElementById('totalUsuarios');
+  const texto = total === 1 ? 'usuario' : 'usuarios';
+  totalTexto.style.opacity = 0;
+  setTimeout(() => {
+    totalTexto.innerText = `Mostrando ${total} ${texto}`;
+    totalTexto.style.opacity = 1;
+  }, 200);
+}
+
+  // Obtener usuarios del backend
+  fetch('http://localhost:3000/api/admin/usuarios', {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+  .then(res => res.json())
+  .then(data => {
+    usuarios = data;
+    renderizarUsuarios();
+    poblarCarreras(usuarios);
+    poblarNiveles(usuarios);
+  })
+  .catch(err => {
+    console.error('Error al cargar usuarios:', err);
+  });
+
+  // Filtro por nivel académico
+  document.getElementById('filtroNivel').addEventListener('change', () => {
+  const nivel = document.getElementById('filtroNivel').value;
+  const carrera = document.getElementById('filtroCarrera').value;
+  renderizarUsuarios(nivel, carrera);
+  });
+
+  document.getElementById('filtroCarrera').addEventListener('change', () => {
+  const nivel = document.getElementById('filtroNivel').value;
+  const carrera = document.getElementById('filtroCarrera').value;
+  renderizarUsuarios(nivel, carrera);
+});
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

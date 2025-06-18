@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bolsa de Trabajo - Inicio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <!-- IZQUIERDA: Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="img/logofinal.png" alt="Logo BATEIL" height="50" class="me-2">
+      <span class="text-warning fw-bold fs-5">BATEIL</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- DERECHA: Menú y sesión -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link text-warning" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="vacantesactivas.html">Ver Vacantes</a></li>
+        <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link" href="perfil.html">Mi Perfil</a></li>
+        <li class="nav-item" id="linkLogin"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+        <li class="nav-item" id="infoUsuario" style="display: none;">
+          <span class="navbar-text text-warning fw-bold me-2" id="userCorreo"></span>
+        </li>
+        <li class="nav-item" id="btnLogout" style="display: none;">
+          <button class="btn btn-warning btn-sm fw-bold" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Carrusel -->
+<div id="carouselExample" class="carousel slide carousel-fade mb-4" data-bs-ride="carousel">
+  <div class="carousel-inner" id="carruselDinamico"></div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Contenido destacado -->
+<section class="container py-5 text-center">
+  <h2 class="mb-4">¿Por qué registrarte en nuestra Bolsa de Trabajo?</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <i class="fas fa-clock fa-2x text-warning mb-3"></i>
+      <h5>Postúlate rápido</h5>
+      <p>Solo necesitas unos minutos para enviar tu CV.</p>
+    </div>
+    <div class="col-md-4">
+      <i class="fas fa-bullhorn fa-2x text-warning mb-3"></i>
+      <h5>Empresas verificadas</h5>
+      <p>Solo publicamos vacantes reales y confiables.</p>
+    </div>
+    <div class="col-md-4">
+      <i class="fas fa-chart-line fa-2x text-warning mb-3"></i>
+      <h5>Oportunidades en crecimiento</h5>
+      <p>Cada semana agregamos nuevas empresas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<style>
+  footer, footer a, footer p, footer h5, footer i {
+    color: #ffc107 !important;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<footer class="bg-dark pt-4 text-warning">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mb-4 text-center">
+        <h5>Redes Sociales</h5>
+        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+        <div class="mt-3">
+          <img src="img/benitoFinal.png" alt="Mascota BATEIL" class="img-fluid" style="max-height: 160px;">
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <h5>Contacto</h5>
+        <p><i class="fas fa-phone"></i> 8717136941</p>
+        <p><i class="fas fa-phone"></i> 8717136931</p>
+        <p><i class="fas fa-envelope"></i> informes@bateil.edu.mx</p>
+        <p><i class="fas fa-map-marker-alt"></i> CALZ. Cuauhtémoc 1480 Sur, Torreón, Coahuila</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Ubicación</h5>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.4388547631806!2d-103.44074802590634!3d25.52375471839891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdbeecc948fd7%3A0xe840d5391e63b950!2sBACHILLERATO%20TECNICO%20INDUSTRIAL%20DE%20LA%20LAGUNA!5e0!3m2!1ses-419!2smx!4v1750167956042!5m2!1ses-419!2smx"
+            style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-warning text-center py-2 text-dark fw-bold">
+    © 2025 Escuela BATEIL. Todos los derechos reservados.
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const token = localStorage.getItem('token');
+  let tipoUsuario = null;
+
+if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      tipoUsuario = payload.tipo;
+
+      document.getElementById('userCorreo').textContent = payload.correo;
+      document.getElementById('infoUsuario').style.display = 'block';
+      document.getElementById('btnLogout').style.display = 'block';
+      document.getElementById('linkLogin').style.display = 'none';
+
+      if (tipoUsuario === 'usuario') {
+        document.getElementById('linkPerfil').style.display = 'block';
+      }
+    } catch (e) {
+      console.error('Token inválido');
+    }
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  }
+  
+
+
+  //------------------------------------CARRUSEL-----------------------------------------------------
+
+
+  async function cargarCarrusel() {
+    const res = await fetch('http://localhost:3000/api/carrusel');
+    const imagenes = await res.json();
+    const contenedor = document.getElementById('carruselDinamico');
+
+    if (!imagenes.length) {
+      contenedor.innerHTML = `
+        <div class="carousel-item active">
+          <div class="d-block w-100 bg-secondary text-center text-white p-5">
+            No hay imágenes cargadas en el carrusel
+          </div>
+        </div>`;
+      return;
+    }
+
+    contenedor.innerHTML = '';
+    imagenes.forEach((img, index) => {
+      const item = document.createElement('div');
+      item.className = 'carousel-item' + (index === 0 ? ' active' : '');
+      item.innerHTML = `
+        <img src="uploads/${img.imagen}" class="d-block w-100" style="max-height:500px; object-fit:cover;">
+        ${img.titulo ? `<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded"><h5>${img.titulo}</h5></div>` : ''}`;
+      contenedor.appendChild(item);
+    });
+  }
+
+  cargarCarrusel();
+</script>
+</body>
+</html>

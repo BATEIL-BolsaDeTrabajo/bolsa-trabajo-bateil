@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bolsa de Trabajo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+    footer, footer a, footer p, footer h5, footer i {
+      color: #ffc107 !important;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<main>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <!-- Logo alineado a la izquierda -->
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="img/logobateilrender.png" alt="Logo BATEIL" height="50" class="me-2">
+      <span class="text-warning fw-bold fs-5">BATEIL</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú alineado a la derecha -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link text-warning" href="vacantesactivas.html">Ver Vacantes</a></li>
+        <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link" href="perfil.html">Mi Perfil</a></li>
+        <li class="nav-item" id="linkLogin"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+        <li class="nav-item" id="infoUsuario" style="display: none;">
+          <span class="navbar-text text-warning me-2 fw-bold" id="userCorreo"></span>
+        </li>
+        <li class="nav-item" id="btnLogout" style="display: none;">
+          <button class="btn btn-warning btn-sm fw-bold" onclick="cerrarSesion()">Cerrar Sesión</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Filtros -->
+  <div class="container mt-5">
+    <h1 class="mb-4">Puestos Disponibles</h1>
+    <div class="row mb-4 g-2">
+      <div class="col-12 col-md-8">
+        <div class="input-group">
+          <span class="input-group-text bg-white"><i class="fas fa-search"></i></span>
+          <input type="text" id="filtroTexto" class="form-control" placeholder="Buscar por título del puesto...">
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-white"><i class="fas fa-calendar-alt"></i></span>
+          <select id="filtroFecha" class="form-select">
+            <option value="">Filtrar por fecha</option>
+            <option value="hoy">Hoy</option>
+            <option value="ayer">Ayer</option>
+            <option value="2dias">Hace 2 días</option>
+            <option value="3dias">Hace 3 días</option>
+            <option value="1semana">Hace 1 semana</option>
+            <option value="2semanas">Hace 2 semanas</option>
+            <option value="1mes">Hace 1 mes</option>
+            <option value="2meses">Hace 2 meses</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="trabajos" class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+      <!-- Aquí se insertan dinámicamente las vacantes -->
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-dark pt-4 text-warning mt-auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 mb-4 text-center">
+        <h5>Redes Sociales</h5>
+        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+        <a href="#"><i class="fab fa-instagram fa-lg"></i></a>
+        <div class="mt-3">
+          <img src="img/benitoFinal.png" alt="Mascota BATEIL" class="img-fluid" style="max-height: 160px;">
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <h5>Contacto</h5>
+        <p><i class="fas fa-phone"></i> 8717136941</p>
+        <p><i class="fas fa-phone"></i> 8717136931</p>
+        <p><i class="fas fa-envelope"></i> informes@bateil.edu.mx</p>
+        <p><i class="fas fa-map-marker-alt"></i> CALZ. Cuauhtémoc 1480 Sur, Torreón, Coahuila</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Ubicación</h5>
+        <div class="ratio ratio-16x9">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.4388547631806!2d-103.44074802590634!3d25.52375471839891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdbeecc948fd7%3A0xe840d5391e63b950!2sBACHILLERATO%20TECNICO%20INDUSTRIAL%20DE%20LA%20LAGUNA!5e0!3m2!1ses-419!2smx!4v1750167956042!5m2!1ses-419!2smx"
+            style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-warning text-center py-2 text-dark fw-bold">
+    © 2025 Escuela BATEIL. Todos los derechos reservados.
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const token = localStorage.getItem('token');
+  let tipoUsuario = null;
+  let trabajosOriginales = [];
+
+  if (token) {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      tipoUsuario = payload.tipo;
+      document.getElementById('userCorreo').textContent = payload.correo;
+      document.getElementById('infoUsuario').style.display = 'block';
+      document.getElementById('btnLogout').style.display = 'block';
+      document.getElementById('linkLogin').style.display = 'none';
+      if (tipoUsuario === 'usuario') {
+        document.getElementById('linkPerfil').style.display = 'block';
+      }
+    } catch (e) {
+      console.error('Token inválido');
+    }
+  }
+
+  function cerrarSesion() {
+    localStorage.removeItem('token');
+    window.location.href = 'login.html';
+  }
+
+  fetch('http://localhost:3000/api/jobs')
+    .then(res => res.json())
+    .then(data => {
+      trabajosOriginales = data;
+      aplicarFiltros();
+    });
+
+  function calcularDias(fecha) {
+    const fechaTrabajo = new Date(fecha);
+    const hoy = new Date();
+    const diffTime = hoy - fechaTrabajo;
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  }
+
+  function aplicarFiltros() {
+    const contenedor = document.getElementById('trabajos');
+    const filtroFecha = document.getElementById('filtroFecha').value;
+    const filtroTexto = document.getElementById('filtroTexto').value.toLowerCase();
+
+    const trabajosFiltrados = trabajosOriginales.filter(trabajo => {
+      const dias = calcularDias(trabajo.fechaPublicacion);
+      let pasaFecha = true;
+      switch (filtroFecha) {
+        case 'hoy': pasaFecha = dias === 0; break;
+        case 'ayer': pasaFecha = dias === 1; break;
+        case '2dias': pasaFecha = dias === 2; break;
+        case '3dias': pasaFecha = dias === 3; break;
+        case '1semana': pasaFecha = dias <= 7; break;
+        case '2semanas': pasaFecha = dias <= 14; break;
+        case '1mes': pasaFecha = dias <= 30; break;
+        case '2meses': pasaFecha = dias <= 60; break;
+      }
+      const pasaTexto = trabajo.titulo.toLowerCase().includes(filtroTexto);
+      return pasaFecha && pasaTexto;
+    });
+
+    mostrarTrabajos(trabajosFiltrados);
+  }
+
+ function mostrarTrabajos(trabajos) {
+  const contenedor = document.getElementById('trabajos');
+  contenedor.innerHTML = '';
+  if (trabajos.length === 0) {
+    contenedor.innerHTML = '<p>No hay trabajos disponibles.</p>';
+    return;
+  }
+
+  trabajos.forEach(trabajo => {
+    const card = document.createElement('div');
+    card.className = 'col';
+
+    let contenido = trabajo.tipo === 'imagen'
+      ? `<div class="card-body"><h5 class="card-title">${trabajo.titulo}</h5></div>
+         <img src="uploads/${trabajo.imagen}" class="card-img-top" alt="Vacante">`
+      : `<div class="card-body">
+           <h5 class="card-title">${trabajo.titulo}</h5>
+           <p class="card-text">${trabajo.descripcion}</p>
+           <span class="badge bg-secondary">${trabajo.ubicacion}</span>
+         </div>`;
+
+    let boton = (token && tipoUsuario === 'usuario')
+      ? `<div class="card-footer bg-white border-0 d-flex justify-content-between align-items-center">
+           <a class="btn btn-success btn-sm fw-bold" target="_blank"
+              href="https://wa.me/?text=${encodeURIComponent(`📢 Vacante: ${trabajo.titulo}\n🔗 Aplica aquí: https://bateil.edu.mx`) }">
+             <i class="fab fa-whatsapp"></i> Compartir
+           </a>
+           <button class="btn btn-warning btn-sm fw-bold" onclick="postularse('${trabajo._id}')">Postularse</button>
+         </div>`
+      : '';
+
+    card.innerHTML = `<div class="card h-100 shadow-sm">${contenido}${boton}</div>`;
+    contenedor.appendChild(card);
+  });
+}
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('filtroFecha').addEventListener('change', aplicarFiltros);
+    document.getElementById('filtroTexto').addEventListener('input', aplicarFiltros);
+  });
+
+  function postularse(jobId) {
+    if (!token) {
+      alert('Debes iniciar sesión para postularte.');
+      return;
+    }
+    fetch(`http://localhost:3000/api/applications/${jobId}`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) alert(`❌ ${data.error}`);
+      else alert('✅ Postulación enviada correctamente');
+    })
+    .catch(err => {
+      console.error('Error al postularse:', err);
+      alert('❌ Error al postularse');
+    });
+  }
+</script>
+</body>
+</html>
