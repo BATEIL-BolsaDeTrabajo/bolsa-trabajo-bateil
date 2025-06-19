@@ -1,3 +1,4 @@
+// Activando CORS global para pruebas
 // backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
@@ -8,13 +9,13 @@ const cors = require('cors');
 dotenv.config(); // Lee variables del archivo .env
 
 const app = express();
-
-// ✅ permitir solicitudes desde tu dominio Render
-app.use(cors({
+app.use(cors());
+//permitir solicitudes desde tu dominio Render
+/*app.use(cors({
   origin: ['https://bolsa-trabajo-bateil.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
-}));
+}));*/
 
 
 
