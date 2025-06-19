@@ -3,12 +3,22 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
+const cors = require('cors');
 
 dotenv.config(); // Lee variables del archivo .env
 
 const app = express();
-app.use(express.json());
 
+// ✅ permitir solicitudes desde tu dominio Render
+app.use(cors({
+  origin: ['https://bolsa-trabajo-bateil.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+
+
+app.use(express.json());
 // Conexión a MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
