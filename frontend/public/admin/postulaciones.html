@@ -154,7 +154,8 @@
 
   async function cargarPostulaciones() {
     try {
-      const res = await fetch('http://localhost:3000/api/applications', {
+      //const res = await fetch('http://localhost:3000/api/applications', {
+      const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/applications', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

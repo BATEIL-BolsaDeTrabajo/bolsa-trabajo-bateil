@@ -212,7 +212,8 @@
       if (imagen) formData.append('imagen', imagen);
     }
 
-    const res = await fetch('http://localhost:3000/api/jobs', {
+    //const res = await fetch('http://localhost:3000/api/jobs', {
+    const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`

@@ -160,7 +160,8 @@
 
   async function cargarVacantes() {
     try {
-      const res = await fetch('http://localhost:3000/api/jobs');
+      //const res = await fetch('http://localhost:3000/api/jobs');
+      const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs');
       const trabajos = await res.json();
       vacantesOriginales = trabajos;
       llenarFiltroEmpresas(trabajos);
@@ -215,7 +216,8 @@
     if (!confirmar) return;
 
     const token = localStorage.getItem('token');
-    const res = await fetch(`http://localhost:3000/api/jobs/${id}`, {
+    //const res = await fetch(`http://localhost:3000/api/jobs/${id}`, {
+    const res = await fetch(`https://bolsa-trabajo-bateil.onrender.com/api/jobs/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });

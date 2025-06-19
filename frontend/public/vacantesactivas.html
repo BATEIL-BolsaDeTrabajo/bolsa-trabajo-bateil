@@ -153,7 +153,8 @@
     window.location.href = 'login.html';
   }
 
-  fetch('http://localhost:3000/api/jobs')
+  //fetch('http://localhost:3000/api/jobs')
+  fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs')
     .then(res => res.json())
     .then(data => {
       trabajosOriginales = data;
@@ -238,7 +239,8 @@
       alert('Debes iniciar sesión para postularte.');
       return;
     }
-    fetch(`http://localhost:3000/api/applications/${jobId}`, {
+    //fetch(`http://localhost:3000/api/applications/${jobId}`, {
+    fetch(`https://bolsa-trabajo-bateil.onrender.com/api/applications/${jobId}`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${token}` }
     })

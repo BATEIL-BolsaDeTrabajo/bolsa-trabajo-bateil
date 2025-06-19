@@ -153,7 +153,8 @@ if (token) {
 
 
   async function cargarCarrusel() {
-    const res = await fetch('http://localhost:3000/api/carrusel');
+    //const res = await fetch('http://localhost:3000/api/carrusel');
+    const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/carrusel');
     const imagenes = await res.json();
     const contenedor = document.getElementById('carruselDinamico');
 

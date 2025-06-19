@@ -111,7 +111,8 @@
   }
 
   // Obtener datos
-  fetch('http://localhost:3000/api/user/profile', {
+  //fetch('http://localhost:3000/api/user/profile', {
+  fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/profile', {
     headers: { 'Authorization': `Bearer ${token}` }
   })
   .then(res => res.json())
@@ -137,7 +138,8 @@
     const cvFile = document.getElementById('cv').files[0];
     if (cvFile) formData.append('cv', cvFile);
 
-    const res = await fetch('http://localhost:3000/api/user/profile', {
+    //const res = await fetch('http://localhost:3000/api/user/profile', {
+      const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/profile', {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${token}` },
       body: formData
@@ -151,7 +153,8 @@
   function eliminarCuenta() {
     if (!confirm('¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer.')) return;
 
-    fetch('http://localhost:3000/api/user/delete', {
+    //fetch('http://localhost:3000/api/user/delete', {
+    fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/delete', {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     })

@@ -129,7 +129,8 @@
     e.preventDefault();
     const formData = new FormData(form);
 
-    const res = await fetch('http://localhost:3000/api/carrusel/admin', {
+    //const res = await fetch('http://localhost:3000/api/carrusel/admin', {
+    const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/carrusel/admin', {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${token}` },
       body: formData
@@ -145,7 +146,8 @@
 
   async function cargarImagenes() {
     galeria.innerHTML = '';
-    const res = await fetch('http://localhost:3000/api/carrusel');
+   // const res = await fetch('http://localhost:3000/api/carrusel');
+    const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/carrusel');
     const imagenes = await res.json();
 
     imagenes.forEach(img => {
@@ -168,7 +170,8 @@
 
   async function eliminarImagen(id) {
     if (!confirm('¿Seguro que deseas eliminar esta imagen del carrusel?')) return;
-    await fetch(`http://localhost:3000/api/carrusel/admin/${id}`, {
+    //await fetch(`http://localhost:3000/api/carrusel/admin/${id}`, {
+    await fetch(`https://bolsa-trabajo-bateil.onrender.com/api/carrusel/admin/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });

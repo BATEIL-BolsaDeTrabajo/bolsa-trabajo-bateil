@@ -176,7 +176,8 @@
     document.getElementById('spinner').classList.remove('d-none');
 
     try {
-      const res = await fetch('http://localhost:3000/api/register', {
+      //const res = await fetch('http://localhost:3000/api/register', {
+      const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/register', {
         method: 'POST',
         body: formData
       });

@@ -158,7 +158,8 @@ if (!token || tipo !== 'admin') {
 }
 
 // Obtener estadísticas
-fetch('http://localhost:3000/api/jobs')
+//fetch('http://localhost:3000/api/jobs')
+fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs')
   .then(res => res.json())
   .then(data => {
     document.getElementById('vacantesCount').textContent = data.length;
@@ -173,7 +174,8 @@ fetch('http://localhost:3000/api/admin/postulaciones', {
   });
 */
 
-  fetch('http://localhost:3000/api/applications', {
+  //fetch('http://localhost:3000/api/applications', {
+  fetch('https://bolsa-trabajo-bateil.onrender.com/api/applications', {
     headers: {
       'Authorization': `Bearer ${token}`
     }

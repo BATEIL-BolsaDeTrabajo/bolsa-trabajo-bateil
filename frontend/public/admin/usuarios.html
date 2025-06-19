@@ -232,7 +232,8 @@ function actualizarContador(total) {
 }
 
   // Obtener usuarios del backend
-  fetch('http://localhost:3000/api/admin/usuarios', {
+  //fetch('http://localhost:3000/api/admin/usuarios', {
+fetch('https://bolsa-trabajo-bateil.onrender.com/api/admin/usuarios', {
     headers: { 'Authorization': `Bearer ${token}` }
   })
   .then(res => res.json())
