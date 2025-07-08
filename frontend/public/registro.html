@@ -11,9 +11,6 @@
       background: url('img/fondo-login.png') no-repeat center center fixed;
       background-size: cover;
     }
-    .card {
-      opacity: 0.95;
-    }
     .form-icon {
       position: absolute;
       left: 15px;
@@ -27,37 +24,33 @@
   </style>
 </head>
 <body>
-  <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 rounded-4 shadow-lg" style="max-width: 500px; width: 100%;">
+  <div class="d-flex justify-content-center align-items-center vh-100 px-3">
+    <div class="card p-4 rounded-4 shadow-lg w-100" style="max-width: 500px; opacity: 0.95;">
       <h2 class="mb-4 text-center text-dark">Crear Cuenta</h2>
       <form id="registroForm">
         <div class="mb-3 position-relative">
           <i class="fas fa-user form-icon"></i>
           <input type="text" class="form-control input-icon" id="nombre" placeholder="Nombre" required>
         </div>
-
         <div class="mb-3 position-relative">
           <i class="fas fa-city form-icon"></i>
           <input type="text" class="form-control input-icon" id="ciudad" placeholder="Ciudad" required>
         </div>
-
         <div class="mb-3 position-relative">
           <i class="fas fa-phone form-icon"></i>
           <input type="text" class="form-control input-icon" id="telefono" placeholder="Teléfono (10 dígitos)" required>
         </div>
-
         <div class="mb-3 position-relative">
           <i class="fas fa-envelope form-icon"></i>
           <input type="email" class="form-control input-icon" id="correo" placeholder="Correo electrónico" required>
         </div>
-
-        <div class="mb-3 position-relative">
+        <div class="mb-1 position-relative">
           <i class="fas fa-lock form-icon"></i>
           <input type="password" class="form-control input-icon" id="contrasena" placeholder="Contraseña" required>
         </div>
-           <small id="nivelSeguridad" class="ms-2" style="font-weight: bold;"></small>
+        <small id="nivelSeguridad" class="ms-2 fw-bold"></small>
 
-        <div class="mb-3">
+        <div class="mb-3 mt-2">
           <select class="form-select" id="nivelAcademico" required>
             <option value="">Nivel Académico</option>
             <option value="Técnico">Técnico</option>
@@ -75,7 +68,6 @@
             <option>Técnico en Sistemas Computacionales</option>
             <option>TSU en Mantenimiento Industrial</option>
             <option>Ingeniería Industrial</option>
-          <!-- Agrega aquí todas las demás carreras que aceptaron -->
           </select>
         </div>
 
@@ -89,113 +81,101 @@
         </button>
         <div id="mensaje" class="mt-3 text-center text-danger"></div>
         <div class="text-center mt-3">
-          <a href="login.html" class="text-primary text-decoration-none">Ya tengo cuenta</a>
+          <a href="login.html" class="text-primary text-decoration-none fw-semibold">Ya tengo cuenta</a>
         </div>
       </form>
     </div>
   </div>
 
   <script>
-  // Mostrar nivel de seguridad de la contraseña
-  document.getElementById('contrasena').addEventListener('input', () => {
-    const contrasena = document.getElementById('contrasena').value;
-    const nivel = document.getElementById('nivelSeguridad');
-
-    if (contrasena.length === 0) {
-      nivel.textContent = '';
-      return;
-    }
-
-    // Nivel fuerte: mayúscula, minúscula y número
-    if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(contrasena)) {
-      nivel.textContent = 'Nivel: Fuerte';
-      nivel.style.color = '#28a745'; // verde
-    }
-    // Nivel medio: minúscula y número
-    else if (/^(?=.*[a-z])(?=.*\d).{6,}$/.test(contrasena)) {
-      nivel.textContent = 'Nivel: Medio';
-      nivel.style.color = '#fd7e14'; // naranja
-    }
-    // Débil
-    else {
-      nivel.textContent = 'Nivel: Débil';
-      nivel.style.color = '#dc3545'; // rojo
-    }
-  });
-
-  // Envío del formulario
-  document.getElementById('registroForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const mensaje = document.getElementById('mensaje');
-    mensaje.textContent = ''; // Limpiar errores anteriores
-
-    const nombre = document.getElementById('nombre').value.trim();
-    const ciudad = document.getElementById('ciudad').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const correo = document.getElementById('correo').value.trim();
-    const contrasena = document.getElementById('contrasena').value.trim();
-    const nivelAcademico = document.getElementById('nivelAcademico').value;
-    const carrera = document.getElementById('carrera').value;
-    const cv = document.getElementById('cv').files[0];
-
-    // Validaciones
-
-    const nombreRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
-    if (!nombreRegex.test(nombre)) {
-      mensaje.textContent = 'El nombre solo puede contener letras y espacios.';
-      return;
-    }
-
-    if (!/^\d{10}$/.test(telefono)) {
-      mensaje.textContent = 'El teléfono debe tener exactamente 10 dígitos.';
-      return;
-    }
-
-    if (contrasena.length < 6) {
-      mensaje.textContent = 'La contraseña debe tener al menos 6 caracteres.';
-      return;
-    }
-
-    const seguridadRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
-    if (!seguridadRegex.test(contrasena)) {
-      mensaje.textContent = 'La contraseña debe contener una mayúscula, una minúscula y un número.';
-      return;
-    }
-
-    // Crear FormData para enviar
-    const formData = new FormData();
-    formData.append('nombre', nombre);
-    formData.append('ciudad', ciudad);
-    formData.append('telefono', telefono);
-    formData.append('correo', correo);
-    formData.append('contrasena', contrasena);
-    formData.append('nivelAcademico', nivelAcademico);
-    formData.append('carrera', carrera);
-    if (cv) formData.append('cv', cv);
-
-    document.getElementById('spinner').classList.remove('d-none');
-
-    try {
-      //const res = await fetch('http://localhost:3000/api/register', {
-      const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/register', {
-        method: 'POST',
-        body: formData
-      });
-
-      document.getElementById('spinner').classList.add('d-none');
-      const data = await res.json();
-
-      if (res.ok) {
-        alert('✅ Registro exitoso, ahora puedes iniciar sesión');
-        window.location.href = 'login.html';
-      } else {
-        mensaje.textContent = data.error || 'Error al registrarse';
+    document.getElementById('contrasena').addEventListener('input', () => {
+      const contrasena = document.getElementById('contrasena').value;
+      const nivel = document.getElementById('nivelSeguridad');
+      if (contrasena.length === 0) {
+        nivel.textContent = '';
+        return;
       }
-    } catch (err) {
-      mensaje.textContent = 'Error de conexión con el servidor.';
-      document.getElementById('spinner').classList.add('d-none');
-    }
-  });
-</script>
+      if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/.test(contrasena)) {
+        nivel.textContent = 'Nivel: Fuerte';
+        nivel.style.color = '#28a745';
+      } else if (/^(?=.*[a-z])(?=.*\d).{6,}$/.test(contrasena)) {
+        nivel.textContent = 'Nivel: Medio';
+        nivel.style.color = '#fd7e14';
+      } else {
+        nivel.textContent = 'Nivel: Débil';
+        nivel.style.color = '#dc3545';
+      }
+    });
+
+    document.getElementById('registroForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const mensaje = document.getElementById('mensaje');
+      mensaje.textContent = '';
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const ciudad = document.getElementById('ciudad').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const correo = document.getElementById('correo').value.trim();
+      const contrasena = document.getElementById('contrasena').value.trim();
+      const nivelAcademico = document.getElementById('nivelAcademico').value;
+      const carrera = document.getElementById('carrera').value;
+      const cv = document.getElementById('cv').files[0];
+
+      const nombreRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+      if (!nombreRegex.test(nombre)) {
+        mensaje.textContent = 'El nombre solo puede contener letras y espacios.';
+        return;
+      }
+
+      if (!/^\d{10}$/.test(telefono)) {
+        mensaje.textContent = 'El teléfono debe tener exactamente 10 dígitos.';
+        return;
+      }
+
+      if (contrasena.length < 6) {
+        mensaje.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        return;
+      }
+
+      const seguridadRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+      if (!seguridadRegex.test(contrasena)) {
+        mensaje.textContent = 'La contraseña debe contener una mayúscula, una minúscula y un número.';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('nombre', nombre);
+      formData.append('ciudad', ciudad);
+      formData.append('telefono', telefono);
+      formData.append('correo', correo);
+      formData.append('contrasena', contrasena);
+      formData.append('nivelAcademico', nivelAcademico);
+      formData.append('carrera', carrera);
+      if (cv) formData.append('cv', cv);
+
+      document.getElementById('spinner').classList.remove('d-none');
+
+      try {
+        const res = await fetch('http://localhost:3000/api/register', {
+          // const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/register', {
+          method: 'POST',
+          body: formData
+        });
+
+        document.getElementById('spinner').classList.add('d-none');
+        const data = await res.json();
+
+        if (res.ok) {
+          alert('✅ Registro exitoso, ahora puedes iniciar sesión');
+          window.location.href = 'login.html';
+        } else {
+          mensaje.textContent = data.error || 'Error al registrarse';
+        }
+      } catch (err) {
+        mensaje.textContent = 'Error de conexión con el servidor.';
+        document.getElementById('spinner').classList.add('d-none');
+      }
+    });
+  </script>
 </body>
 </html>

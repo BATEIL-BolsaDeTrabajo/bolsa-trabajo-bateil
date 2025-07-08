@@ -53,4 +53,27 @@ router.delete('/:id', verifyToken(['admin']), async (req, res) => {
   }
 });
 
+// Obtener postulaciones del usuario autenticado
+router.get('/mis-postulaciones', verifyToken(['usuario']), async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const postulaciones = await Application.find({ usuario: userId })
+      .populate('trabajo', 'titulo empresa')
+      .sort({ createdAt: -1 });
+
+    const resultado = postulaciones.map(post => ({
+      puesto: post.trabajo?.titulo || 'No disponible',
+      empresa: post.trabajo?.empresa || 'No especificada',
+      fecha: post.createdAt || post.fecha || post._id.getTimestamp()
+    }));
+
+    res.json(resultado);
+  } catch (error) {
+    console.error('❌ Error al obtener mis postulaciones:', error);
+    res.status(500).json({ error: 'Error al obtener tus postulaciones' });
+  }
+});
+
+
 module.exports = router;

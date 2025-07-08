@@ -28,6 +28,9 @@
   .main-sidebar .nav-link:hover {
     background-color: #555 !important;    /* gris oscuro en hover */
   }
+  .navbar .fa-bars {
+      color: #ffc107 !important;
+    }
 </style>
 
 
@@ -110,34 +113,34 @@
   </aside>
 
   <!-- Contenido -->
-  <div class="content-wrapper p-4">
-    <h2>Usuarios Registrados</h2>
-<div class="row mb-3 align-items-end">
-  <div class="col-md-4">
-    <label for="filtroNivel" class="form-label">
-      <i class="fas fa-graduation-cap mr-2 text-warning"></i> Nivel Académico
-    </label>
-    <select id="filtroNivel" class="form-control border border-warning shadow-sm">
-      <option value="">Todos</option>
-    </select>
+<div class="content-wrapper p-4">
+  <h2>Usuarios Registrados</h2>
+
+  <div class="row mb-3">
+    <div class="col-md-6 col-lg-4">
+      <label for="filtroNivel" class="form-label">
+        <i class="fas fa-graduation-cap mr-2 text-warning"></i> Nivel Académico
+      </label>
+      <select id="filtroNivel" class="form-control border border-warning shadow-sm" style="max-width: 400px;">
+        <option value="">Todos</option>
+      </select>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <label for="filtroCarrera" class="form-label">
+        <i class="fas fa-briefcase mr-2 text-warning"></i> Carrera
+      </label>
+      <select id="filtroCarrera" class="form-control border border-warning shadow-sm" style="max-width: 400px;">
+        <option value="">Todas</option>
+      </select>
+    </div>
   </div>
 
-  <div class="col-md-4">
-    <label for="filtroCarrera" class="form-label">
-      <i class="fas fa-briefcase mr-2 text-warning"></i> Carrera
-    </label>
-    <select id="filtroCarrera" class="form-control border border-warning shadow-sm">
-      <option value="">Todas</option>
-    </select>
-  </div>
-</div>
+  <p id="totalUsuarios" class="text-muted mt-2">Mostrando 0 usuarios</p>
 
-  <!--<div class="col-md-4">-->
-    <p id="totalUsuarios" class="text-muted mt-4">Mostrando 0 usuarios</p>
-  <!--</div>-->
-
+  <div class="table-responsive">
     <table class="table table-bordered table-hover mt-3">
-      <thead>
+      <thead class="thead-light">
         <tr>
           <th>#</th>
           <th>Nombre</th>
@@ -154,7 +157,7 @@
     </table>
   </div>
 </div>
-
+  
 <script>
   const token = localStorage.getItem('token');
   if (!token) window.location.href = '../login.html';
@@ -240,8 +243,8 @@ function actualizarContador(total) {
 }
 
   // Obtener usuarios del backend
-  //fetch('http://localhost:3000/api/admin/usuarios', {
-fetch('https://bolsa-trabajo-bateil.onrender.com/api/admin/usuarios', {
+  fetch('http://localhost:3000/api/admin/usuarios', {
+//fetch('https://bolsa-trabajo-bateil.onrender.com/api/admin/usuarios', {
     headers: { 'Authorization': `Bearer ${token}` }
   })
   .then(res => res.json())

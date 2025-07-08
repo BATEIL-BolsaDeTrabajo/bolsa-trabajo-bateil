@@ -6,55 +6,51 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-
-    <style>
-  .main-sidebar .nav-link {
-    color: #ffc107 !important; /* texto amarillo */
-    font-weight: 500;
-  }
-
-  .main-sidebar .nav-link i {
-    color: #ffc107 !important; /* íconos amarillos */
-  }
-
-  .main-sidebar .nav-link.active {
-    background-color: #ffc107 !important; /* amarillo fuerte */
-    color: #000 !important;               /* texto negro */
-  }
-
-  .main-sidebar .nav-link.active i {
-    color: #000 !important;               /* ícono negro en activo */
-  }
-
-  .main-sidebar .nav-link:hover {
-    background-color: #555 !important;    /* gris oscuro en hover */
-  }
-</style>
-
+  <style>
+    .main-sidebar .nav-link {
+      color: #ffc107 !important;
+      font-weight: 500;
+    }
+    .main-sidebar .nav-link i {
+      color: #ffc107 !important;
+    }
+    .main-sidebar .nav-link.active {
+      background-color: #ffc107 !important;
+      color: #000 !important;
+    }
+    .main-sidebar .nav-link.active i {
+      color: #000 !important;
+    }
+    .main-sidebar .nav-link:hover {
+      background-color: #555 !important;
+    }
+    .navbar .fa-bars {
+      color: #ffc107 !important;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
   <!-- Navbar -->
- <nav class="main-header navbar navbar-expand bg-dark navbar-dark py-2">
-    <!-- Botón para mostrar u ocultar el menú lateral -->
+  <nav class="main-header navbar navbar-expand bg-dark navbar-dark py-2">
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button">
-         <i class="fas fa-bars"></i>
+          <i class="fas fa-bars"></i>
         </a>
-    </li>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link text-warning font-weight-bold" href="#" onclick="logout()">
-         <i class="fas fa-sign-out-alt text-warning mr-1"></i> Salir
+          <i class="fas fa-sign-out-alt text-warning mr-1"></i> Salir
         </a>
       </li>
     </ul>
   </nav>
 
-    <!-- Sidebar -->
+  <!-- Sidebar -->
   <aside class="main-sidebar bg-dark elevation-4">
     <a href="#" class="brand-link">
       <span class="brand-text font-weight-bold text-warning">Panel Admin</span>
@@ -62,48 +58,13 @@
     <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
-          <li class="nav-item">
-            <a href="dashboard.html" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="crear-vacante.html" class="nav-link active">
-              <i class="nav-icon fas fa-plus"></i>
-              <p>Crear Vacante</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="postulaciones.html" class="nav-link">
-              <i class="nav-icon fas fa-file-alt"></i>
-              <p>Postulaciones</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="usuarios.html" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Usuarios</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="vacantes.html" class="nav-link">
-              <i class="nav-icon fa fa-id-card"></i>
-              <p>Vacantes</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="carrusel.html" class="nav-link">
-              <i class="nav-icon fas fa-images"></i>
-              <p>Carrusel</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/index.html" class="nav-link" target="_blank">
-              <i class="nav-icon fa fa-check-circle"></i>
-              <p>Puestos Activos</p>
-            </a>
-          </li>
+          <li class="nav-item"><a href="dashboard.html" class="nav-link"><i class="nav-icon fas fa-home"></i><p>Dashboard</p></a></li>
+          <li class="nav-item"><a href="crear-vacante.html" class="nav-link active"><i class="nav-icon fas fa-plus"></i><p>Crear Vacante</p></a></li>
+          <li class="nav-item"><a href="postulaciones.html" class="nav-link"><i class="nav-icon fas fa-file-alt"></i><p>Postulaciones</p></a></li>
+          <li class="nav-item"><a href="usuarios.html" class="nav-link"><i class="nav-icon fas fa-users"></i><p>Usuarios</p></a></li>
+          <li class="nav-item"><a href="vacantes.html" class="nav-link"><i class="nav-icon fa fa-id-card"></i><p>Vacantes</p></a></li>
+          <li class="nav-item"><a href="carrusel.html" class="nav-link"><i class="nav-icon fas fa-images"></i><p>Carrusel</p></a></li>
+          <li class="nav-item"><a href="/index.html" class="nav-link" target="_blank"><i class="nav-icon fa fa-check-circle"></i><p>Puestos Activos</p></a></li>
         </ul>
       </nav>
     </div>
@@ -120,18 +81,17 @@
 
           <form id="formVacante" enctype="multipart/form-data">
             <div class="card-body">
-              <div class="form-group">
+              <div class="form-group" style="max-width: 500px;">
                 <label for="titulo">Título del Puesto</label>
                 <input type="text" class="form-control" id="titulo" required>
               </div>
 
-              <div class="form-group">
-                  <label for="empresa">Empresa</label>
-                  <input type="text" id="empresa" name="empresa" class="form-control" required />
+              <div class="form-group" style="max-width: 500px;">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" class="form-control" required />
               </div>
 
-
-              <div class="form-group">
+              <div class="form-group" style="max-width: 500px;">
                 <label for="tipoVacante">Tipo de Vacante</label>
                 <select id="tipoVacante" class="form-control" onchange="cambiarTipo()" required>
                   <option value="texto">Título + Descripción + Ubicación + Empresa</option>
@@ -141,20 +101,19 @@
 
               <!-- Campos tipo texto -->
               <div id="camposTexto">
-                <div class="form-group">
+                <div class="form-group" style="max-width: 500px;">
                   <label for="descripcion">Descripción</label>
                   <textarea class="form-control" id="descripcion" rows="4"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="max-width: 500px;">
                   <label for="ubicacion">Ubicación</label>
                   <input type="text" class="form-control" id="ubicacion">
                 </div>
               </div>
 
-
               <!-- Campo tipo imagen -->
               <div id="camposImagen" style="display: none;">
-                <div class="form-group">
+                <div class="form-group" style="max-width: 500px;">
                   <label for="imagen">Imagen del Puesto (JPG, PNG)</label>
                   <input type="file" class="form-control" id="imagen" accept="image/*">
                 </div>
@@ -177,13 +136,10 @@
 </div>
 
 <script>
-
   function logout() {
-  localStorage.clear();
-  window.location.href = '/login.html';
-}
-
-
+    localStorage.clear();
+    window.location.href = '/login.html';
+  }
 
   function cambiarTipo() {
     const tipo = document.getElementById('tipoVacante').value;
@@ -200,12 +156,10 @@
     const titulo = document.getElementById('titulo').value;
     const empresa = document.getElementById('empresa').value;
 
-    if (!empresa.trim()) 
-    {
-       alert('Por favor ingresa el nombre de la empresa.');
-       return;
+    if (!empresa.trim()) {
+      alert('Por favor ingresa el nombre de la empresa.');
+      return;
     }
-
 
     const formData = new FormData();
     formData.append('titulo', titulo);
@@ -217,28 +171,30 @@
       formData.append('ubicacion', document.getElementById('ubicacion').value);
     } else {
       const imagen = document.getElementById('imagen').files[0];
-      if (imagen) formData.append('imagen', imagen);
+      if (imagen) {
+        if (!['image/jpeg', 'image/png'].includes(imagen.type)) {
+          alert('Solo se permiten imágenes JPG o PNG.');
+          return;
+        }
+        formData.append('imagen', imagen);
+      }
     }
 
-    //const res = await fetch('http://localhost:3000/api/jobs', {
-    const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs', {
+    const res = await fetch('http://localhost:3000/api/jobs', {
+    //const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
+      headers: { 'Authorization': `Bearer ${token}` },
       body: formData
     });
 
     const data = await res.json();
     const mensajeDiv = document.getElementById('mensaje');
-    mensajeDiv.innerHTML = data.error
-      ? `<div class="alert alert-danger">${data.error}</div>`
-      : `<div class="alert alert-success">${data.message}</div>`;
+    mensajeDiv.className = data.error ? "alert alert-danger" : "alert alert-success";
+    mensajeDiv.textContent = data.error ? data.error : data.message;
 
     if (!data.error) document.getElementById('formVacante').reset();
   });
 </script>
-
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>

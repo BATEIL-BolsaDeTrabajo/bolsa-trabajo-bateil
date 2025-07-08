@@ -20,49 +20,53 @@
     footer a:hover {
       text-decoration: underline;
     }
+    .input-group-text i 
+    {
+      color: #ffc107 !important;
+    }
+    .input-group-text {
+      background-color: #343a40 !important;
+      color: #ffc107 !important;
+      border-color: #343a40;
+    }
   </style>
 </head>
 <body class="bg-light">
-
 <main>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container-fluid">
-    <!-- Logo alineado a la izquierda -->
-    <a class="navbar-brand d-flex align-items-center" href="index.html">
-      <img src="img/logobateilrender.png" alt="Logo BATEIL" height="50" class="me-2">
-      <span class="text-warning fw-bold fs-5">BATEIL</span>
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Menú alineado a la derecha -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link text-warning" href="vacantesactivas.html">Ver Vacantes</a></li>
-        <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link" href="perfil.html">Mi Perfil</a></li>
-        <li class="nav-item" id="linkLogin"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
-        <li class="nav-item" id="infoUsuario" style="display: none;">
-          <span class="navbar-text text-warning me-2 fw-bold" id="userCorreo"></span>
-        </li>
-        <li class="nav-item" id="btnLogout" style="display: none;">
-          <button class="btn btn-warning btn-sm fw-bold" onclick="cerrarSesion()">Cerrar Sesión</button>
-        </li>
-      </ul>
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="img/logobateilrender.png" alt="Logo BATEIL" height="50" class="me-2">
+        <span class="text-warning fw-bold fs-5">BATEIL</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link text-warning fw-bold" href="vacantesactivas.html">Ver Vacantes</a></li>
+          <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link" href="perfil.html">Mi Perfil</a></li>
+          <li class="nav-item" id="linkPostulaciones" style="display: none;"><a class="nav-link" href="mis-postulaciones.html">Mis Postulaciones</a></li>
+          <li class="nav-item" id="linkLogin"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+          <li class="nav-item" id="infoUsuario" style="display: none;">
+            <span class="navbar-text text-warning me-2 fw-bold" id="userCorreo"></span>
+          </li>
+          <li class="nav-item" id="btnLogout" style="display: none;">
+            <button class="btn btn-warning btn-sm fw-bold" onclick="cerrarSesion()">Cerrar Sesión</button>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-
+  </nav>
 
   <!-- Filtros -->
-  <div class="container mt-5">
+  <div class="container">
     <h1 class="mb-4">Puestos Disponibles</h1>
     <div class="row mb-4 g-2">
       <div class="col-12 col-md-8">
-        <div class="input-group">
+        <div class="input-group mb-3 mb-md-0">
           <span class="input-group-text bg-white"><i class="fas fa-search"></i></span>
           <input type="text" id="filtroTexto" class="form-control" placeholder="Buscar por título del puesto...">
         </div>
@@ -84,13 +88,14 @@
         </div>
       </div>
     </div>
+
     <div id="trabajos" class="row row-cols-1 row-cols-md-2 g-4 mb-5">
-      <!-- Aquí se insertan dinámicamente las vacantes -->
+      <!-- Vacantes dinámicas -->
     </div>
   </div>
 </main>
 
-<!-- FOOTER -->
+<!-- Footer -->
 <footer class="bg-dark pt-4 text-warning mt-auto">
   <div class="container">
     <div class="row">
@@ -113,9 +118,7 @@
       <div class="col-md-4 mb-4">
         <h5>Ubicación</h5>
         <div class="ratio ratio-16x9">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.4388547631806!2d-103.44074802590634!3d25.52375471839891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdbeecc948fd7%3A0xe840d5391e63b950!2sBACHILLERATO%20TECNICO%20INDUSTRIAL%20DE%20LA%20LAGUNA!5e0!3m2!1ses-419!2smx!4v1750167956042!5m2!1ses-419!2smx"
-            style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.4388547631806!2d-103.44074802590634!3d25.52375471839891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fdbeecc948fd7%3A0xe840d5391e63b950!2sBACHILLERATO%20TECNICO%20INDUSTRIAL%20DE%20LA%20LAGUNA!5e0!3m2!1ses-419!2smx!4v1750167956042!5m2!1ses-419!2smx"></iframe>
         </div>
       </div>
     </div>
@@ -124,6 +127,14 @@
     © 2025 Escuela BATEIL. Todos los derechos reservados.
   </div>
 </footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// (Tu JavaScript sigue intacto, sin cambios relevantes)
+</script>
+</body>
+</html>
 
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -142,6 +153,7 @@
       document.getElementById('linkLogin').style.display = 'none';
       if (tipoUsuario === 'usuario') {
         document.getElementById('linkPerfil').style.display = 'block';
+        document.getElementById('linkPostulaciones').style.display = 'block';
       }
     } catch (e) {
       console.error('Token inválido');
@@ -153,8 +165,8 @@
     window.location.href = 'login.html';
   }
 
-  //fetch('http://localhost:3000/api/jobs')
-  fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs')
+  fetch('http://localhost:3000/api/jobs')
+  //fetch('https://bolsa-trabajo-bateil.onrender.com/api/jobs')
     .then(res => res.json())
     .then(data => {
       trabajosOriginales = data;
@@ -220,10 +232,11 @@
               href="https://wa.me/?text=${encodeURIComponent(`📢 Vacante: ${trabajo.titulo}\n🔗 Aplica aquí: https://bateil.edu.mx`) }">
              <i class="fab fa-whatsapp"></i> Compartir
            </a>
-           <button class="btn btn-warning btn-sm fw-bold" onclick="postularse('${trabajo._id}')">Postularse</button>
+           <button class="btn btn-warning btn-sm fw-bold" onclick="postularse('${trabajo._id}')">
+            <i class="fa-solid fa-check me-1"></i>Postularse
+           </button>
          </div>`
       : '';
-
     card.innerHTML = `<div class="card h-100 shadow-sm">${contenido}${boton}</div>`;
     contenedor.appendChild(card);
   });
@@ -239,8 +252,8 @@
       alert('Debes iniciar sesión para postularte.');
       return;
     }
-    //fetch(`http://localhost:3000/api/applications/${jobId}`, {
-    fetch(`https://bolsa-trabajo-bateil.onrender.com/api/applications/${jobId}`, {
+    fetch(`http://localhost:3000/api/applications/${jobId}`, {
+    //fetch(`https://bolsa-trabajo-bateil.onrender.com/api/applications/${jobId}`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${token}` }
     })

@@ -24,9 +24,10 @@
     <!-- DERECHA: Menú y sesión -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link text-warning" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-warning" href="index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="vacantesactivas.html">Ver Vacantes</a></li>
         <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link" href="perfil.html">Mi Perfil</a></li>
+        <li class="nav-item" id="linkPostulaciones" style="display: none;"><a class="nav-link" href="mis-postulaciones.html">Mis Postulaciones</a></li>
         <li class="nav-item" id="linkLogin"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
         <li class="nav-item" id="infoUsuario" style="display: none;">
           <span class="navbar-text text-warning fw-bold me-2" id="userCorreo"></span>
@@ -52,20 +53,20 @@
 </div>
 
 <!-- Contenido destacado -->
-<section class="container py-5 text-center">
+<section class="container py-5 text-center px-3">
   <h2 class="mb-4">¿Por qué registrarte en nuestra Bolsa de Trabajo?</h2>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 mb-4">
       <i class="fas fa-clock fa-2x text-warning mb-3"></i>
       <h5>Postúlate rápido</h5>
       <p>Solo necesitas unos minutos para enviar tu CV.</p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mb-4">
       <i class="fas fa-bullhorn fa-2x text-warning mb-3"></i>
       <h5>Empresas verificadas</h5>
       <p>Solo publicamos vacantes reales y confiables.</p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mb-4">
       <i class="fas fa-chart-line fa-2x text-warning mb-3"></i>
       <h5>Oportunidades en crecimiento</h5>
       <p>Cada semana agregamos nuevas empresas.</p>
@@ -136,6 +137,7 @@ if (token) {
 
       if (tipoUsuario === 'usuario') {
         document.getElementById('linkPerfil').style.display = 'block';
+        document.getElementById('linkPostulaciones').style.display = 'block';
       }
     } catch (e) {
       console.error('Token inválido');
@@ -153,8 +155,8 @@ if (token) {
 
 
   async function cargarCarrusel() {
-    //const res = await fetch('http://localhost:3000/api/carrusel');
-    const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/carrusel');
+    const res = await fetch('http://localhost:3000/api/carrusel');
+    //const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/carrusel');
     const imagenes = await res.json();
     const contenedor = document.getElementById('carruselDinamico');
 

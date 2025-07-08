@@ -27,7 +27,8 @@
       <ul class="navbar-nav ms-auto align-items-center">
         <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
         <li class="nav-item"><a class="nav-link" href="vacantesactivas.html">Ver Vacantes</a></li>
-        <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link text-warning" href="perfil.html">Mi Perfil</a></li>
+        <li class="nav-item" id="linkPerfil" style="display: none;"><a class="nav-link fw-bold text-warning" href="perfil.html">Mi Perfil</a></li>
+        <li class="nav-item" id="linkPostulaciones" style="display: none;"><a class="nav-link" href="mis-postulaciones.html">Mis Postulaciones</a></li>
         <li class="nav-item" id="linkLogin"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
         <li class="nav-item" id="infoUsuario" style="display: none;">
           <span class="navbar-text text-warning me-2 fw-bold" id="userCorreo"></span>
@@ -42,48 +43,54 @@
 
 
 
-<!-- CONTENIDO PERFIL -->
-<div class="container mt-5" style="max-width: 600px;">
-  <h2 class="mb-4">Mi Perfil</h2>
-  <form id="perfilForm" enctype="multipart/form-data">
-    <div class="mb-3">
-      <label class="form-label">Nombre</label>
-      <input type="text" class="form-control" id="nombre" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Ciudad</label>
-      <input type="text" class="form-control" id="ciudad" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Teléfono</label>
-      <input type="text" class="form-control" id="telefono" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Cambiar Contraseña (opcional)</label>
-      <input type="password" class="form-control" id="contrasena">
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Nivel Académico</label>
-      <select class="form-select" id="nivelAcademico" required>
-        <option value="">Selecciona una opción</option>
-        <option value="Técnico">Técnico</option>
-        <option value="Técnico Superior">Técnico Superior</option>
-        <option value="Licenciatura">Licenciatura</option>
-        <option value="Maestría">Maestría</option>
-        <option value="Doctorado">Doctorado</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Subir nuevo CV (PDF)</label>
-      <input type="file" class="form-control" id="cv" name="cv" accept="application/pdf">
-    </div>
-    <button type="submit" class="btn btn-warning fw-bold">Actualizar Perfil</button>
-    <button type="button" class="btn btn-danger ms-2" onclick="eliminarCuenta()">Eliminar Cuenta</button>
-  </form>
-  <div id="mensaje" class="mt-3"></div>
+<!-- Contenido -->
+<div class="container my-5 px-3">
+  <div class="mx-auto bg-white shadow p-4 rounded" style="max-width: 600px;">
+    <h2 class="mb-4 text-center text-dark">Mi Perfil</h2>
+    <form id="perfilForm" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label class="form-label fw-bold"><i class="fas fa-user me-2 text-warning"></i>Nombre</label>
+    <input type="text" class="form-control" id="nombre" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label fw-bold"><i class="fas fa-city me-2 text-warning"></i>Ciudad</label>
+    <input type="text" class="form-control" id="ciudad" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label fw-bold"><i class="fas fa-phone me-2 text-warning"></i>Teléfono</label>
+    <input type="text" class="form-control" id="telefono" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label fw-bold"><i class="fas fa-lock me-2 text-warning"></i>Cambiar Contraseña <small class="text-muted">(opcional)</small></label>
+    <input type="password" class="form-control" id="contrasena">
+  </div>
+  <div class="mb-3">
+    <label class="form-label fw-bold"><i class="fas fa-graduation-cap me-2 text-warning"></i>Nivel Académico</label>
+    <select class="form-select" id="nivelAcademico" required>
+      <option value="">Selecciona una opción</option>
+      <option value="Técnico">Técnico</option>
+      <option value="Técnico Superior">Técnico Superior</option>
+      <option value="Licenciatura">Licenciatura</option>
+      <option value="Maestría">Maestría</option>
+      <option value="Doctorado">Doctorado</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label fw-bold"><i class="fas fa-file-pdf me-2 text-warning"></i>Subir nuevo CV (PDF)</label>
+    <input type="file" class="form-control" id="cv" name="cv" accept="application/pdf">
+  </div>
+  <div class="d-flex flex-column flex-md-row justify-content-center gap-2">
+    <button type="submit" class="btn btn-warning fw-bold">
+      <i class="fas fa-save me-1"></i>Actualizar Perfil
+    </button>
+    <button type="button" class="btn btn-danger fw-bold" onclick="eliminarCuenta()">
+      <i class="fas fa-trash-alt me-1"></i>Eliminar Cuenta
+    </button>
+  </div>
+</form>
+    <div id="mensaje" class="mt-3"></div>
+  </div>
 </div>
-
-
 
 <!-- SCRIPTS -->
 <script>
@@ -100,6 +107,7 @@
       document.getElementById('btnLogout').style.display = 'inline-block';
       document.getElementById('linkLogin').style.display = 'none';
       document.getElementById('linkPerfil').style.display = 'block';
+       document.getElementById('linkPostulaciones').style.display = 'block';
     } catch (e) {
       console.error('Token inválido');
     }
@@ -111,8 +119,8 @@
   }
 
   // Obtener datos
-  //fetch('http://localhost:3000/api/user/profile', {
-  fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/profile', {
+  fetch('http://localhost:3000/api/user/profile', {
+  //fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/profile', {
     headers: { 'Authorization': `Bearer ${token}` }
   })
   .then(res => res.json())
@@ -138,8 +146,8 @@
     const cvFile = document.getElementById('cv').files[0];
     if (cvFile) formData.append('cv', cvFile);
 
-    //const res = await fetch('http://localhost:3000/api/user/profile', {
-      const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/profile', {
+    const res = await fetch('http://localhost:3000/api/user/profile', {
+      //const res = await fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/profile', {
       method: 'PUT',
       headers: { 'Authorization': `Bearer ${token}` },
       body: formData
@@ -153,8 +161,8 @@
   function eliminarCuenta() {
     if (!confirm('¿Estás seguro de eliminar tu cuenta? Esta acción no se puede deshacer.')) return;
 
-    //fetch('http://localhost:3000/api/user/delete', {
-    fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/delete', {
+    fetch('http://localhost:3000/api/user/delete', {
+    //fetch('https://bolsa-trabajo-bateil.onrender.com/api/user/delete', {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     })
